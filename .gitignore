@@ -1,0 +1,33 @@
+# Evita rastrear arquivos sensíveis ou desnecessários
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Node.js (caso use no futuro)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Ambientes e senhas
+.env
+*.env
+
+# Builds e distribuições
+dist/
+build/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos pessoais do Windows (evita rastrear coisas fora do projeto)
+../
+../../
+*.dat
+*.log
+*.tmp
