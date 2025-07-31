@@ -6,7 +6,8 @@
   <title>Meu Portfólio</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/works.css" />
-  <script src="index.js" defer></script>
+  <script src="../js/index.js" defer></script>
+  
 
   <!-- Fonts e ícones -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&family=Archivo&family=Poppins&display=swap">
@@ -19,56 +20,57 @@
     <nav class="navigation">
       <ul class="nav-list">
         <li><a href="#home">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
         <li><a href="#works">Projetos</a></li>
-        <li><a href="#experience">Experiência</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="home">
-    <div class="text-container">
-        <h1>Beatriz Bramont Oliveira</h1>
-        <p>Desenvolvedora em formação, apaixonada por tecnologia e dedicada a transformar ideias em soluções criativas e com impacto real.</p>
+  <section id="inicio">
+    <div id="home">
+      <div class="home-container">
+        <div class="home-texto">
+          <h1>Beatriz Bramont Oliveira</h1>
+          <p>
+            Desenvolvedora em formação e dedicada a transformar ideias em soluções criativas e com impacto real.
+          </p>
+          <div class="buttons-container">
+            <a class="profile" href="https://github.com/beatrizbramont" target="_blank">
+              <span class="material-symbols-outlined">id_card</span>
+              <span class="link-text">Perfil</span>
+            </a>
+            <a class="download-cv" href="assets/Beatriz_Bramont_CV.pdf" download>
+              <span class="material-symbols-outlined">contract</span>
+              <span class="link-text">Baixar CV</span>
+            </a>
+          </div>
+        </div>
+        <div class="home-foto">
+          <img src="https://github.com/beatrizbramont.png" alt="Foto de perfil GitHub" />
+        </div>
+      </div>
     </div>
-    <img src="https://github.com/beatrizbramont.png" alt="Foto de perfil GitHub">
   </section>
 
-  <div class="buttons-container">
-        <a class="profile" href="https://github.com/beatrizbramont" target="_blank">
-            <span class="material-symbols-outlined">id_card</span>
-            <span class="link-text">Perfil</span>
-        </a>
+  
+  <section id="sobre">
+  <h1 id="titulo-sobre" class="titulo-sobre">Sobre Mim</h1>
+  <p>
+    Estou no 4° semestre de Análise e Desenvolvimento de Sistemas na Faculdade Impacta, já cursei ADS no SENAI, onde fui reconhecida duas vezes com o prêmio de Aluna Destaque.<br><br>
+    Tenho conhecimentos em <strong>Python, SQL, Docker, Flask, APIs REST, HTML, CSS, JavaScript e Excel Intermediário</strong>.<br><br>
+    Valorizo o trabalho em equipe, a criatividade e o comprometimento. Estou em busca de uma oportunidade como desenvolvedora júnior, onde eu possa aplicar e expandir minhas habilidades, contribuindo ativamente com soluções e aprendizado contínuo.
+  </p>
+</section>
 
-        <a class="download-cv" href="assets/Beatriz_Bramont_CV.pdf" download>
-            <span class="material-symbols-outlined">contract</span>
-            <span class="link-text">Baixar CV</span>
-        </a>
-    </div>
+
 
   <section id="works">
-    <h1>Projetos</h1>
+    <h1 id="titulo-projetos" class="titulo-projetos">Projetos</h1>
     <div id="repos-container" class="repo-grid"></div>
       <div class="button">
         <button id="load-more">Ver mais repositórios</button>
       </div>
   </section>
-
-  <section id="experience">
-    <h1>Experiência</h1>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Aprendiz — SABESP</h3>
-          <span class="timeline-date">Dez 2021 - Mai 2023</span>
-          <p>
-            Suporte técnico a clientes e usuários da companhia, análise de reclamações, controle de planilhas em Excel, análise de processos de contas e uso do sistema SAP.
-          </p>
-        </div>
-      </div>
-  </div>
-</section>
-
 
   <footer>
     <p class="contact">
@@ -76,6 +78,8 @@
       <a href="https://www.linkedin.com/in/beatriz-bramont-008329209" target="_blank">LinkedIn</a>
     </p>
   </footer>
+
+
 
   <script src="../js/works.js" defer></script>
   <script src="../js/index.js" defer></script>

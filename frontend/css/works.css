@@ -16,7 +16,7 @@ header {
 .navigation {
   background-color: #FEB5CA;
   border-radius: 4px;
-  padding: 20px 10px;
+  padding: 14px 4px;
   position: sticky;
   min-height: auto;
   bottom: 0;
@@ -76,10 +76,10 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 
 .repo-card {
   background: #ffffffdd;

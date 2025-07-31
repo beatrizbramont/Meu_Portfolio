@@ -15,6 +15,35 @@ html {
   scroll-padding-top: 90px;
 }
 
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar estilizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff84a7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d96890;
+}
+
 header {
   display: none;
   background: rgba(255, 182, 197, 0.7);
@@ -25,14 +54,14 @@ header {
   top: 0;
   z-index: 1000;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  padding: 15px 0;
+  padding: 5px 0;
   border-radius: 0 0 10px 10px;
 }
 
 .navigation {
   max-width: 900px;
   width: 100%;
-  padding: 0 30px;
+  padding: 0 10px;
 }
 
 .nav-list {
@@ -47,10 +76,10 @@ header {
 .nav-list a {
   color: #444;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   text-decoration: none;
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: 3px;
   transition: color 0.3s ease;
 }
 
@@ -76,83 +105,74 @@ header {
   width: 100%;
 }
 
-section#home {
+#home {
+  min-height: 60vh;;
+  padding: 100px 0;
+  background: linear-gradient(255, 255, 255, 0.2);
+}
+
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 10px;
-  min-height: auto;
-  max-width: 900px;
-  margin: 0 auto 60px auto;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  gap: 40px;
-}
-
-#home h1 {
-  font-size: 2.5rem;
-  margin: 0 0 15px 0;
-  line-height: 1.2;
-  font-weight: 700;
-  text-align: left;
-}
-
-#home p {
-  font-size: 1.2rem;
-  text-align: left;
-  max-width: 100%;
-  margin: 0;
-}
-
-#home img {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  border: 5px solid #f76c8e;
-  object-fit: cover;
-  box-shadow: 0 10px 25px rgba(247, 108, 142, 0.5);
-  transition: transform 0.3s ease;
-  flex-shrink: 0; /* para não encolher */
-}
-
-#home .text-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* para deixar o texto alinhado à esquerda */
-  max-width: 55%; /* limite a largura para forçar alinhamento e evitar espalhar */
-}
-
-#home img:hover {
-  transform: scale(1.05);
-}
-
-/* --- Botões posicionados abaixo de #home --- */
-#home + .buttons-container {
-  display: flex;
-  gap: 25px;
-  margin: 20px auto 180px 210px;
-  justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: -80px;
+  gap: 2rem;
 }
 
-/* Botões */
-.profile, .download-cv {
-  display: inline-flex;
+.home-texto {
+  flex: 1;
+  text-align: left;
+}
+
+.home-texto h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.home-texto p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.buttons-container a {
+  display: flex;
   align-items: center;
-  gap: 12px;
-  background-color: #e94f6d;
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  box-shadow: 0 5px 15px rgba(233, 79, 109, 0.4);
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #fa779c;
+  border-radius: 8px;
+  font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  user-select: none;
+  color: #000;
+  transition: 0.3s ease;
+}
+
+.buttons-container a:hover {
+  background-color: #f1a2b7;
+  color: white;
+}
+
+.home-foto {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.home-foto img {
+  width: 310px;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid #ff84a7;
+  object-fit: cover;
 }
 
 .profile:hover,
@@ -169,8 +189,11 @@ section#home {
 }
 
 footer {
-  display: none; /* esconde por padrão */
-  margin-top: 50px;
+  display: none;
+  position: fixed;      /* fica fixo na parte inferior da tela */
+  bottom: 0;
+  left: 0;
+  width: 100%;         /* ocupa toda a largura */
   padding: 20px 10px;
   background: rgba(255, 182, 197, 0.8);
   backdrop-filter: saturate(180%) blur(10px);
@@ -180,73 +203,72 @@ footer {
   text-align: center;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
   border-radius: 10px 10px 0 0;
+  z-index: 9999;       /* para ficar sobre outros elementos */
 }
+
 
 footer .contact a:hover {
   text-decoration: underline;
 }
 
-#experience {
+#sobre {
   padding: 4rem 2rem;
-  background-color: #ffffff;
-  text-align: left;
-}
-
-#experience h1 {
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  min-height: 60vh;
+  scroll-margin-top: 100px;
+  background: linear-gradient(to right, #e2dbdd, #d2d3d2);
+  border-radius: 12px;
+  max-width: 700px; /* largura máxima para facilitar leitura */
+  margin: 0 auto; /* centralizar horizontalmente */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* sombra suave */
   font-family: 'Poppins', sans-serif;
-}
-
-.timeline {
-  position: relative;
-  margin: 0 auto;
-  padding-left: 30px;
-  border-left: 3px solid #a2e39c;
-  max-width: 800px;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 2rem;
-}
-
-.timeline-dot {
-  position: absolute;
-  top: 5px;
-  left: -9px;
-  width: 18px;
-  height: 18px;
-  background: linear-gradient(to right, #ff84a7, #a2e39c);
-  border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 0 0 2px #a2e39c;
-}
-
-.timeline-content {
-  padding-left: 1rem;
-  font-family: 'Archivo', sans-serif;
-}
-
-.timeline-content h3 {
-  font-size: 1.2rem;
-  margin: 0;
   color: #333;
+  margin-bottom: 4rem;
 }
 
-.timeline-date {
-  font-size: 0.9rem;
-  color: #888;
-  margin-bottom: 0.5rem;
-  display: inline-block;
+#sobre h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+  color: #e91e63; /* rosa vivo para dar destaque */
 }
 
-.timeline-content p {
-  font-size: 1rem;
-  color: #444;
-  margin: 0.5rem 0 0;
+#sobre p {
+  font-size: 1.15rem;
   line-height: 1.6;
+  color: #555;
+}
+
+#sobre p strong {
+  color: #222;
+}
+
+
+body.works-active {
+  background: linear-gradient(135deg, #ebbe7f 0%, #ff88d2 100%);
+  transition: background 0.5s ease;
+}
+
+.titulo-projetos {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.titulo-projetos.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#titulo-sobre {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#titulo-sobre.visible {
+  opacity: 1;
 }
 
 

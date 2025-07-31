@@ -5,7 +5,7 @@ const allowedRepos = ["ProjetoAPI", "AtividadeMicros", "ReservaMicros", "Spotify
 let allRepos = [];
 
 // Buscar todos os repositórios do back-end
-fetch('http://localhost:3000/repos')
+fetch('https://meu-portfolio-bus2.onrender.com/repos')
   .then(response => response.json())
   .then(data => {
     allRepos = data;
@@ -39,7 +39,7 @@ function renderRepos(repos) {
 
   // Busca todas as linguagens em paralelo
   const languageFetches = repos.map(repo => {
-    return fetch(`http://localhost:3000/languages/${repo.owner.login}/${repo.name}`)
+    return fetch(`https://meu-portfolio-bus2.onrender.com/languages/${repo.owner.login}/${repo.name}`)
       .then(response => {
         if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
         return response.json();
