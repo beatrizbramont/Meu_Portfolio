@@ -58,6 +58,28 @@ header {
   border-radius: 0 0 10px 10px;
 }
 
+.contato footer {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: 20px 10px;
+  background: rgba(255, 182, 197, 0.8);
+  backdrop-filter: saturate(180%) blur(10px);
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px 10px 0 0;
+  margin-top: 2rem;
+}
+
+.contato footer.visible {
+  opacity:1;
+  transform: translateY(20px);
+  display: block;
+}
+
 .navigation {
   max-width: 900px;
   width: 100%;
@@ -189,11 +211,10 @@ header {
 }
 
 footer {
-  display: none;
-  position: fixed;      /* fica fixo na parte inferior da tela */
-  bottom: 0;
-  left: 0;
-  width: 100%;         /* ocupa toda a largura */
+  display: none; /* escondido por padrão */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease;
   padding: 20px 10px;
   background: rgba(255, 182, 197, 0.8);
   backdrop-filter: saturate(180%) blur(10px);
@@ -203,52 +224,58 @@ footer {
   text-align: center;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
   border-radius: 10px 10px 0 0;
-  z-index: 9999;       /* para ficar sobre outros elementos */
+  margin-top: 2rem;
 }
-
 
 footer .contact a:hover {
   text-decoration: underline;
 }
 
 #sobre {
-  padding: 4rem 2rem;
+  padding: 1rem 2rem;
   text-align: center;
-  min-height: 60vh;
-  scroll-margin-top: 100px;
-  background: linear-gradient(to right, #e2dbdd, #d2d3d2);
-  border-radius: 12px;
-  max-width: 700px; /* largura máxima para facilitar leitura */
-  margin: 0 auto; /* centralizar horizontalmente */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* sombra suave */
+  background: #ffffffdd;
+  border-radius: 16px;
+  max-width: 640px;
+  margin: 0 auto 4rem auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   font-family: 'Poppins', sans-serif;
   color: #333;
+  scroll-margin-top: 100px;
+  margin-top: -2rem; /* 🔼 sobe a caixa */
   margin-bottom: 4rem;
+  scroll-margin-top: 10px;
 }
 
 #sobre h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1.8rem;
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  color: #e91e63; /* rosa vivo para dar destaque */
+  color: #e91e63;
 }
 
 #sobre p {
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: #555;
+  margin: 0;
 }
 
 #sobre p strong {
-  color: #222;
+  color: #111;
+  font-weight: 600;
 }
 
+/* body.sobre-active {
+  background: linear-gradient(to right, #db6e8d, #86ca80);
+  transition: background 0.5s ease;
+}
 
 body.works-active {
   background: linear-gradient(135deg, #ebbe7f 0%, #ff88d2 100%);
   transition: background 0.5s ease;
-}
-
+} */
+/*  */
 .titulo-projetos {
   display: none;
   opacity: 0;
@@ -263,7 +290,6 @@ body.works-active {
 }
 
 #titulo-sobre {
-  opacity: 0;
   transition: opacity 1s ease;
 }
 
@@ -271,6 +297,63 @@ body.works-active {
   opacity: 1;
 }
 
+
+.nav-list li.dropdown {
+  position: relative;
+  /* cria uma “área de hover” maior */
+  padding-bottom: 6px; /* mesmo valor do espaço */
+}
+
+/* Dropdown escondido por padrão */
+.dropdown-content {
+  display: none !important; /* força esconder */
+  position: absolute;
+  top: 100%; /* aumenta 6px o espaço */   /* aparece logo abaixo do menu */
+  left: 0;
+  background-color: #ffe6ec; /* rosa pastel */
+  color: #7a2f45; /* tom escuro para texto */
+  border-radius: 3px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 8px 14px;
+  min-width: 160px;
+  z-index: 1000;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+/* Itens dentro do dropdown */
+.dropdown-content li {
+  list-style: none;
+}
+
+/* Links do dropdown */
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover dos links */
+.dropdown-content a:hover {
+  background-color: #fce4ec;
+  color: #e91e63;
+}
+
+/* Mostrar dropdown apenas no hover do li.dropdown */
+.nav-list li.dropdown:hover > .dropdown-content {
+  display: block !important;
+}
+
+.dropdown-content a .material-symbols-outlined {
+  font-size: 1.1rem;         /* ícone menor */
+  user-select: none;
+}
 
 /* Responsividade */
 @media (max-width: 768px) {

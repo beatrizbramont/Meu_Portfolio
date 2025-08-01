@@ -12,57 +12,56 @@ function profile() {
     .catch(error => console.error("Erro ao buscar dados:", error));
 }
 
-function rodape() {
-  const footer = document.querySelector('footer');
-  const experienceSection = document.getElementById('experience');
 
-  if (!footer || !experienceSection) {
-    console.error('Footer ou seção experience não encontrados!');
-    return;
-  }
+// function color() {
+//   document.addEventListener("DOMContentLoaded", () => {
+//     const worksSection = document.querySelector("#works");
 
-  function checkFooter() {
-    const experienceBottom = experienceSection.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-    const threshold = 80;
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             document.body.classList.add("works-active");
+//           } else {
+//             document.body.classList.remove("works-active");
+//           }
+//         });
+//       },
+//       {
+//         threshold: 0.5,
+//       }
+//     );
 
-    if (experienceBottom <= windowHeight + threshold) {
-      footer.style.display = 'block';
-    } else {
-      footer.style.display = 'none';
-    }
-  }
+//     if (worksSection) {
+//       observer.observe(worksSection);
+//     }
+//   });
+// }
 
-  window.addEventListener('scroll', checkFooter);
-  window.addEventListener('load', checkFooter);
+// function colorSobre() {
+//   document.addEventListener("DOMContentLoaded", () => {
+//     const sobreSection = document.querySelector("#sobre");
 
-  checkFooter();
-}
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             document.body.classList.add("sobre-active");
+//           } else {
+//             document.body.classList.remove("sobre-active");
+//           }
+//         });
+//       },
+//       {
+//         threshold: 0.5,
+//       }
+//     );
 
-function color() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const worksSection = document.querySelector("#works");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            document.body.classList.add("works-active");
-          } else {
-            document.body.classList.remove("works-active");
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      }
-    );
-
-    if (worksSection) {
-      observer.observe(worksSection);
-    }
-  });
-}
+//     if (sobreSection) {
+//       observer.observe(sobreSection);
+//     }
+//   });
+// }
 
 function nameProject() {
   const titulo = document.getElementById("titulo-projetos");
@@ -116,41 +115,82 @@ function scroll() {
   });
 }
 
-function scrollSobre() {
-  const titulo = document.getElementById("titulo-sobre");
-  let allowShowTitle = true;
+// function scrollSobre() {
+//   const titulo = document.getElementById("titulo-sobre");
+//   let allowShowTitle = true;
 
-  document.querySelector('a[href="#sobre"]').addEventListener("click", function (e) {
-    e.preventDefault();
-    const section = document.querySelector("#sobre");
-    allowShowTitle = false;
-    titulo.classList.remove("visible");
+//   document.querySelector('a[href="#sobre"]').addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const section = document.querySelector("#sobre");
+//     allowShowTitle = false;
+//     titulo.classList.remove("visible");
 
-    const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
+//     const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
 
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
+//     window.scrollTo({
+//       top: y,
+//       behavior: 'smooth'
+//     });
 
-    setTimeout(() => {
-      allowShowTitle = true;
-    }, 1500);
-  });
+//     setTimeout(() => {
+//       allowShowTitle = true;
+//     }, 1500);
+//   });
 
-  window.addEventListener("scroll", function () {
-    const posicaoTitulo = titulo.getBoundingClientRect().top;
-    const alturaJanela = window.innerHeight;
+//   window.addEventListener("scroll", function () {
+//     const posicaoTitulo = titulo.getBoundingClientRect().top;
+//     const alturaJanela = window.innerHeight;
 
-    if (allowShowTitle && posicaoTitulo < alturaJanela - 100) {
-      titulo.classList.add("visible");
+//     if (allowShowTitle && posicaoTitulo < alturaJanela - 100) {
+//       titulo.classList.add("visible");
+//     }
+//   });
+// }
+
+function footer() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const contatoSection = document.getElementById("contato");
+    const footer = contatoSection?.querySelector("footer");
+    const linkContato = document.getElementById("link-contato");
+
+    if (!contatoSection || !footer) return;
+
+    function showFooter() {
+      footer.classList.add("visible");
+    }
+
+    // Mostrar ao scrollar até a section (funciona mesmo se nunca clicou no menu)
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            showFooter();
+            observer.unobserve(entry.target); // Para evitar múltiplas ativações
+          }
+        });
+      },
+      {
+        threshold: 0.5, // quando 50% da seção estiver visível
+      }
+    );
+
+    observer.observe(contatoSection);
+
+    // Mostrar ao clicar no menu
+    if (linkContato) {
+      linkContato.addEventListener("click", (e) => {
+        e.preventDefault();
+        contatoSection.scrollIntoView({ behavior: "smooth" });
+        // Sem timeout agora — o observer cuida de mostrar o footer
+      });
     }
   });
 }
 
 // Inicialização de funções
+// colorSobre();
+footer();
 nameProject();
-color();
-rodape();
+// color();
 profile();
-scrollSobre();
+// scrollSobre();
