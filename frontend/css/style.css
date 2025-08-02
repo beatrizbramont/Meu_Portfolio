@@ -234,7 +234,7 @@ footer .contact a:hover {
 #sobre {
   padding: 1rem 2rem;
   text-align: center;
-  background: #ffffffdd;
+  background-color: #fce4ec;
   border-radius: 16px;
   max-width: 640px;
   margin: 0 auto 4rem auto;
@@ -376,5 +376,153 @@ body.works-active {
   #home img {
     width: 220px;
     height: 220px;
+  }
+}
+
+/* ====================== RESPONSIVIDADE ====================== */
+@media (max-width: 1024px) {
+  .home-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-texto {
+    text-align: center;
+  }
+
+  .home-foto {
+    justify-content: center;
+  }
+
+  .home-foto img {
+    width: 260px;
+  }
+
+  .buttons-container {
+    justify-content: center;
+  }
+
+  .home-texto h1 {
+    font-size: 2.2rem;
+  }
+
+  .home-texto p {
+    font-size: 1.1rem;
+  }
+
+  #sobre {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  #sobre h1 {
+    font-size: 2rem;
+  }
+
+  #sobre p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .home-container {
+    padding: 2rem 1rem;
+  }
+
+  .home-foto img {
+    width: 200px;
+  }
+
+  .home-texto h1 {
+    font-size: 1.8rem;
+  }
+
+  .home-texto p {
+    font-size: 1rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #sobre {
+    padding: 1.5rem 1rem;
+  }
+
+  #sobre h1 {
+    font-size: 1.8rem;
+  }
+
+  #sobre p {
+    font-size: 0.95rem;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 1rem;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .dropdown-content a {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-texto h1 {
+    font-size: 1.6rem;
+  }
+
+  .home-texto p {
+    font-size: 0.95rem;
+  }
+
+  .home-foto img {
+    width: 160px;
+  }
+
+  .buttons-container a {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .nav-list a {
+    font-size: 0.85rem;
+  }
+
+  #sobre {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  #sobre h1 {
+    font-size: 1.6rem;
+  }
+
+  #sobre p {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 0.8rem;
   }
 }
