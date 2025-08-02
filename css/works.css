@@ -35,6 +35,19 @@ header {
   margin: 0;
   padding: 0;
 }
+.loading-message {
+  font-size: 1.2rem;
+  color: var(--claro);
+  margin-top: 10px;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
 
 .nav-list a {
   text-decoration: none;

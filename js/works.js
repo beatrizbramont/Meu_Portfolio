@@ -1,8 +1,12 @@
 const container = document.getElementById('repos-container');
 const loadMoreBtn = document.getElementById('load-more');
+const loadingMessage = document.getElementById('loading-message'); // <- nova referência
 const allowedRepos = ["ProjetoAPI", "AtividadeMicros", "ReservaMicros", "Spotify-Imersao"];
 
 let allRepos = [];
+
+// Mostrar a mensagem de carregamento
+loadingMessage.style.display = 'block';
 
 // Buscar todos os repositórios do back-end
 fetch('https://meu-portfolio-bus2.onrender.com/repos')
@@ -12,15 +16,22 @@ fetch('https://meu-portfolio-bus2.onrender.com/repos')
 
     const filteredRepos = data.filter(repo => allowedRepos.includes(repo.name));
     renderRepos(filteredRepos);
+
+    // Ocultar a mensagem após renderizar
+    loadingMessage.style.opacity = '0';
+    setTimeout(() => loadingMessage.style.display = 'none', 300);
   })
   .catch(error => {
     console.error('Erro ao carregar repositórios:', error);
     container.innerHTML = "<p>Erro ao carregar os repositórios.</p>";
+
+    // Oculta a mensagem mesmo em caso de erro
+    loadingMessage.style.opacity = '0';
+    setTimeout(() => loadingMessage.style.display = 'none', 300);
   });
 
 // Função para renderizar os repositórios e buscar linguagens em paralelo
 function renderRepos(repos) {
-  // Renderiza os cards imediatamente com "Carregando..."
   repos.forEach(repo => {
     const card = document.createElement('div');
     card.className = 'repo-card';
@@ -37,7 +48,6 @@ function renderRepos(repos) {
     container.appendChild(card);
   });
 
-  // Busca todas as linguagens em paralelo
   const languageFetches = repos.map(repo => {
     return fetch(`https://meu-portfolio-bus2.onrender.com/languages/${repo.owner.login}/${repo.name}`)
       .then(response => {
@@ -71,4 +81,3 @@ function renderRepos(repos) {
 loadMoreBtn.addEventListener('click', () => {
   window.open('https://github.com/beatrizbramont?tab=repositories', '_blank');
 });
-

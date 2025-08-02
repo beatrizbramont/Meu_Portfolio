@@ -40,6 +40,12 @@ Durante o desenvolvimento deste portfólio, aprofundei meus conhecimentos em:
 - Consumo de API REST usando `fetch()`
 
 ---
+⚠️ Atenção
+Os projetos podem demorar alguns segundos para aparecer.
+Isso acontece porque o back-end está hospedado no Render, uma plataforma que coloca o servidor em modo de sleep (descanso) após um período de inatividade.
+Assim que você acessa, ele leva alguns segundos para "acordar" e responder às requisições da API.
+
+Obrigada pela paciência! 😊
 
 ## 📁 Estrutura do Projeto
 
