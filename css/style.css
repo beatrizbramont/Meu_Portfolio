@@ -359,7 +359,7 @@ body.works-active {
 @media (max-width: 768px) {
   .home-container {
     flex-direction: column;
-    padding: 1rem;
+    align-items: center;
   }
 
   .home-texto {
@@ -376,14 +376,15 @@ body.works-active {
   }
 
   .buttons-container {
-    justify-content: center;
-    gap: 12px;
+    order: 2; /* garante que fique abaixo */
+    margin-top: 1rem;
   }
 
   .home-foto {
     flex: none;
     margin-top: 1.5rem;
     justify-content: center;
+    order: 1;
   }
 
   .home-foto img {
@@ -423,8 +424,10 @@ body.works-active {
   }
 
   .nav-list {
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: nowrap; /* impede quebra em coluna */
+    gap: 20px; /* reduz o espaçamento */
+    font-size: 0.8rem; /* diminui a fonte */
+    justify-content: center; /* centraliza */
   }
 
   .nav-list a {
