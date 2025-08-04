@@ -484,3 +484,18 @@ body.works-active {
     font-size: 14px !important;
   }
 }
+
+@media (max-width: 480px) {
+  .repo-grid {
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  .repo-grid h3 {
+    font-size: 1rem;
+  }
+
+  .repo-grid p {
+    font-size: 0.9rem;
+  }
+}
