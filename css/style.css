@@ -58,28 +58,6 @@ header {
   border-radius: 0 0 10px 10px;
 }
 
-.contato footer {
-  display: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  padding: 20px 10px;
-  background: rgba(255, 182, 197, 0.8);
-  backdrop-filter: saturate(180%) blur(10px);
-  color: #333;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: center;
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 10px 10px 0 0;
-  margin-top: 2rem;
-}
-
-.contato footer.visible {
-  opacity:1;
-  transform: translateY(20px);
-  display: block;
-}
-
 .navigation {
   max-width: 900px;
   width: 100%;
@@ -210,25 +188,49 @@ header {
   user-select: none;
 }
 
+
 footer {
-  display: none; /* escondido por padrão */
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.5s ease;
-  padding: 20px 10px;
-  background: rgba(255, 182, 197, 0.8);
-  backdrop-filter: saturate(180%) blur(10px);
-  color: #333;
-  font-weight: 600;
-  font-size: 14px;
+  margin-top: 4rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 182, 197, 0.2); /* tom pastel rosa claro */
   text-align: center;
-  box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
-  border-radius: 10px 10px 0 0;
-  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: #333;
+  border-top: 1px solid #f3cdd8;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Poppins', sans-serif;
 }
 
-footer .contact a:hover {
-  text-decoration: underline;
+footer strong {
+  color: #e91e63;
+}
+
+footer .emoji {
+  font-size: 0.9rem;
+  vertical-align: middle;
+  opacity: 0.8;
+}
+
+.tech-icons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.tech-icons img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+}
+
+.tech-icons img:hover {
+  transform: scale(1.15);
+}
+
+#works {
+  margin-bottom: 4rem; /* ou ajuste para 5rem se preferir mais espaço */
 }
 
 #sobre {
