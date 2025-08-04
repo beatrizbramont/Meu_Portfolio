@@ -470,17 +470,17 @@ body.works-active {
 
 @media (max-width: 480px) {
   .dropdown-content {
-    min-width: 80px;
-    padding: 6px 0;
+    min-width: 110px;
+    padding: 2px 0;
     border-radius: 3px;
   }
 
   .dropdown-content li a {
-    padding: 8px 12px;
-    font-size: 12.5px;
+    padding: 5px 8px;
+    font-size: 10.5px;
   }
 
   .material-symbols-outlined {
-    font-size: 18px !important;
+    font-size: 14px !important;
   }
 }
