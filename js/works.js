@@ -1,7 +1,7 @@
 const container = document.getElementById('repos-container');
 const loadMoreBtn = document.getElementById('load-more');
 const loadingMessage = document.getElementById('loading-message'); // <- nova referência
-const allowedRepos = ["ProjetoAPI", "AtividadeMicros", "ReservaMicros", "Spotify-Imersao"];
+const allowedRepos = ["ProjetoAPI", "AtividadeMicros", "SistemaRestaurante", "Spotify-Imersao"];
 
 let allRepos = [];
 
