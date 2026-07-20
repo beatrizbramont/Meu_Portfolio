@@ -1,83 +1,87 @@
-const container = document.getElementById('repos-container');
-const loadMoreBtn = document.getElementById('load-more');
-const loadingMessage = document.getElementById('loading-message'); // <- nova referência
-const allowedRepos = ["ProjetoAPI", "AtividadeMicros", "SistemaRestaurante", "Spotify-Imersao"];
+const container = document.querySelector('#works-container');
 
-let allRepos = [];
+const projects = [
+  {
+    name: "Sistema de Restaurante (TableTrack)",
+    description: "Sistema completo de gerenciamento de mesas, reservas e comandas para restaurantes, com controle de disponibilidade em tempo real.",
+    tech: "Python • Flask • SQLAlchemy • MySQL • API REST",
+    features: [
+      "Controle de mesas nos estados livre, reservada e ocupada",
+      "Sistema de reservas com validação de horários futuros",
+      "Distribuição de mesas para grupos maiores que 8 pessoas",
+      "Integração entre serviços através de APIs REST",
+      "Atualização automática do status das mesas conforme reservas"
+    ],
+    note: "Deploy em nuvem planejado como melhoria futura, com possibilidade de utilização de serviços como AWS para hospedagem da aplicação, banco de dados e infraestrutura escalável.",
+    github: "https://github.com/beatrizbramont/SistemaRestaurante.git",
+    demo: "#"
+  },
+  {
+    name: "2ManyTareas",
+    description: "Aplicação web de gerenciamento de tarefas com organização de atividades, acompanhamento de progresso e visualização em calendário.",
+    tech: "Next.js • React • JavaScript • Tailwind CSS • API REST",
+    features: [
+      "Criação e gerenciamento de tarefas",
+      "Controle de status: A fazer, Em andamento, Aguardando e Concluído",
+      "Interface baseada em componentes reutilizáveis",
+      "Integração com API para manipulação de dados"
+    ],
+    github: "https://github.com/beatrizbramont/FullStackProject.git",
+    demo: "#"
+  },
+  {
+    name: "Meu Portfólio",
+    description: "Portfólio profissional desenvolvido para apresentar minha trajetória, habilidades técnicas e projetos desenvolvidos na área de tecnologia.",
+    tech: "HTML • CSS • JavaScript • GitHub Pages",
+    features: [
+      "Layout responsivo para diferentes dispositivos",
+      "Animações e efeitos de navegação com JavaScript",
+      "Integração com API do GitHub",
+      "Renderização dinâmica de projetos"
+    ],
+    github: "https://github.com/beatrizbramont/Meu_Portfolio",
+    demo: "https://beatrizbramont.github.io/Meu_Portfolio/"
+  }
+];
 
-// Mostrar a mensagem de carregamento
-loadingMessage.style.display = 'block';
+function renderProjects() {
+  container.innerHTML = "";
 
-// Buscar todos os repositórios do back-end
-fetch('https://meu-portfolio-bus2.onrender.com/repos')
-  .then(response => response.json())
-  .then(data => {
-    allRepos = data;
+  projects.forEach(project => {
+    const div = document.createElement("div");
+    div.classList.add("repo-card");
 
-    const filteredRepos = data.filter(repo => allowedRepos.includes(repo.name));
-    renderRepos(filteredRepos);
+    div.innerHTML = `
+      <h3>${project.name}</h3>
 
-    // Ocultar a mensagem após renderizar
-    loadingMessage.style.opacity = '0';
-    setTimeout(() => loadingMessage.style.display = 'none', 300);
-  })
-  .catch(error => {
-    console.error('Erro ao carregar repositórios:', error);
-    container.innerHTML = "<p>Erro ao carregar os repositórios.</p>";
+      <p>${project.description}</p>
 
-    // Oculta a mensagem mesmo em caso de erro
-    loadingMessage.style.opacity = '0';
-    setTimeout(() => loadingMessage.style.display = 'none', 300);
-  });
+      <p class="tech">${project.tech}</p>
 
-// Função para renderizar os repositórios e buscar linguagens em paralelo
-function renderRepos(repos) {
-  repos.forEach(repo => {
-    const card = document.createElement('div');
-    card.className = 'repo-card';
+      <ul>
+        ${project.features.map(f => `<li>${f}</li>`).join("")}
+        ${project.note ? `
+          <p class="project-note">
+            💡 ${project.note}
+          </p>
+        ` : ""}
+      </ul>
 
-    const langId = `lang-${repo.name}`;
+      <div class="buttons">
+        <a href="${project.github}" target="_blank">
+          Código
+        </a>
 
-    card.innerHTML = `
-      <h2>${repo.name}</h2>
-      <p>${repo.description || "Sem descrição"}</p>
-      <p id="${langId}"><strong>Linguagens:</strong> Carregando...</p>
-      <a href="${repo.html_url}" target="_blank" class="repo-button">Ver no GitHub</a>
+        ${project.demo !== "#" ? `
+          <a href="${project.demo}" target="_blank">
+            Ver projeto
+          </a>
+        ` : ""}
+      </div>
     `;
 
-    container.appendChild(card);
+    container.appendChild(div);
   });
-
-  const languageFetches = repos.map(repo => {
-    return fetch(`https://meu-portfolio-bus2.onrender.com/languages/${repo.owner.login}/${repo.name}`)
-      .then(response => {
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-        return response.json();
-      })
-      .then(languages => ({
-        name: repo.name,
-        languages: Object.keys(languages).join(', ') || "N/A"
-      }))
-      .catch(error => {
-        console.error(`Erro ao carregar linguagens de ${repo.name}:`, error);
-        return {
-          name: repo.name,
-          languages: "Erro ao carregar"
-        };
-      });
-  });
-
-  Promise.all(languageFetches)
-    .then(results => {
-      results.forEach(result => {
-        const langElement = document.getElementById(`lang-${result.name}`);
-        if (langElement) {
-          langElement.innerHTML = `<strong>Linguagens:</strong> ${result.languages}`;
-        }
-      });
-    });
 }
 
-loadMoreBtn.addEventListener('click', () => {
-  window.open('https://github.com/beatrizbramont?tab=repositories', '_blank');
-});
+renderProjects();

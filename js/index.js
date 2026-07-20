@@ -1,16 +1,16 @@
-function profile() {
-  fetch('https://meu-portfolio-bus2.onrender.com/repos')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Erro na API: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log("Repositórios do GitHub:", data);
-    })
-    .catch(error => console.error("Erro ao buscar dados:", error));
-}
+// function profile() {
+//   fetch('https://meu-portfolio-bus2.onrender.com/repos')
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`Erro na API: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log("Repositórios do GitHub:", data);
+//     })
+//     .catch(error => console.error("Erro ao buscar dados:", error));
+// }
 
 
 // function color() {
@@ -64,54 +64,34 @@ function profile() {
 // }
 
 function nameProject() {
-  const titulo = document.getElementById("titulo-projetos");
-  let allowShowTitle = true;
+  const titulo = document.querySelector(".titulo-projetos");
+
+  if (!titulo) return;
 
   document.querySelector('a[href="#works"]').addEventListener("click", function (e) {
     e.preventDefault();
-    allowShowTitle = false;
-    titulo.classList.remove("visible");
 
     document.querySelector("#works").scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
 
+    // mantém o título aparecendo após o clique
     setTimeout(() => {
-      allowShowTitle = true;
-    }, 1500);
+      titulo.classList.add("visible");
+    }, 800);
   });
 
+
   window.addEventListener("scroll", function () {
+
     const posicaoTitulo = titulo.getBoundingClientRect().top;
     const alturaJanela = window.innerHeight;
 
-    if (allowShowTitle && posicaoTitulo < alturaJanela - 100) {
+    if (posicaoTitulo < alturaJanela - 100) {
       titulo.classList.add("visible");
     }
-  });
-}
 
-function scroll() {
-  const titulo = document.getElementById("titulo-projetos");
-  let allowShowTitle = true;
-
-  document.querySelector('a[href="#works"]').addEventListener("click", function (e) {
-    e.preventDefault();
-    const section = document.querySelector("#works");
-    allowShowTitle = false;
-    titulo.classList.remove("visible");
-
-    const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
-
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
-
-    setTimeout(() => {
-      allowShowTitle = true;
-    }, 1500);
   });
 }
 
@@ -192,5 +172,5 @@ function footer() {
 footer();
 nameProject();
 // color();
-profile();
+// profile();
 // scrollSobre();

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meu Portfólio</title>
+
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/works.css" />
-  <script src="./js/index.js" defer></script>
 
-  <!-- Fonts e ícones -->
+  <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&family=Archivo&family=Poppins&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+
+  <script src="./js/index.js" defer></script>
+  <script src="./js/works.js" defer></script>
 </head>
 
 <body>
+
+  <!-- NAV -->
   <header>
     <nav class="navigation">
       <ul class="nav-list">
@@ -42,66 +47,93 @@
     </nav>
   </header>
 
-  <section id="inicio">
-    <div id="home">
-      <div class="home-container">
-        <div class="home-texto">
-          <h1>Beatriz Bramont Oliveira</h1>
-          <p>
-            Desenvolvedora em formação e dedicada a transformar ideias em soluções criativas e com impacto real.
-          </p>
-          <div class="buttons-container">
-            <a class="profile" href="https://github.com/beatrizbramont" target="_blank">
-              <span class="material-symbols-outlined">id_card</span>
-              <span class="link-text">Perfil</span>
-            </a>
-            <a class="download-cv" href="assets\C.V BeatrizBramont.pdf" download>
-              <span class="material-symbols-outlined">contract</span>
-              <span class="link-text">Baixar CV</span>
-            </a>
-          </div>
+  <!-- HOME -->
+  <section id="home">
+    <div class="home-container">
+
+      <div class="home-texto">
+        <h1>Beatriz Bramont Oliveira</h1>
+
+        <p class="subtitle">
+          Desenvolvedora Fullstack focada em criação de aplicações completas,
+          do back-end ao front-end.
+        </p>
+
+        <p class="highlight">
+          Construo sistemas funcionais, conectando APIs, interfaces e regras de negócio.
+        </p>
+
+        <div class="stack">
+          <span>Python</span>
+          <span>Flask</span>
+          <span>JavaScript</span>
+          <span>APIs REST</span>
+          <span>SQL</span>
         </div>
-        <div class="home-foto">
-          <img src="https://github.com/beatrizbramont.png" alt="Foto de perfil GitHub" />
+
+        <div class="buttons-container">
+          <a class="profile" href="https://github.com/beatrizbramont" target="_blank">
+            <span class="material-symbols-outlined">code</span>
+            GitHub
+          </a>
+
+          <a class="download-cv" href="assets/C.V BeatrizBramont.pdf" download>
+            <span class="material-symbols-outlined">description</span>
+            Currículo
+          </a>
         </div>
       </div>
+
+      <div class="home-foto">
+        <img src="https://github.com/beatrizbramont.png" alt="Foto de perfil" />
+      </div>
+
     </div>
   </section>
 
+  <!-- SOBRE -->
   <section id="sobre">
-    <h1 id="titulo-sobre" class="titulo-sobre">Sobre Mim</h1>
+    <h1 class="titulo-sobre">Sobre Mim</h1>
     <p>
-      Desenvolvedora de Software Júnior com experiência em desenvolvimento de soluções utilizando Python, SQL, JavaScript e Power Platform, atuando na automação de processos, manutenção de sistemas e manipulação de dados. Atualmente trabalho no desenvolvimento de soluções internas voltadas para otimização de atividades e melhoria contínua. Durante a graduação em Análise e Desenvolvimento de Sistemas, desenvolvi projetos utilizando Flask, APIs REST e banco de dados relacionais.<br><br>
-      Valorizo o trabalho em equipe, a criatividade e o comprometimento. Atualmente, atuo como estagiária de TI na Timbro Trading, onde busco aprender constantemente e contribuir efetivamente com a equipe, visando minha evolução profissional como desenvolvedora.
+      Desenvolvedora Fullstack com experiência na construção de aplicações completas,
+      atuando desde a criação de APIs até o desenvolvimento de interfaces.
+
+      Tenho experiência com Python, Flask, JavaScript e bancos de dados relacionais,
+      desenvolvendo soluções que integram back-end e front-end de forma eficiente.
+
+      Atualmente trabalho com desenvolvimento de sistemas internos, automação de processos
+      e manipulação de dados, sempre buscando criar soluções escaláveis e bem estruturadas.
+
+      Durante minha formação em Análise e Desenvolvimento de Sistemas, desenvolvi projetos
+      com foco em APIs REST, integração de sistemas e aplicações fullstack.
     </p>
   </section>
 
+  <!-- PROJETOS -->
   <section id="works">
-    <h1 id="titulo-projetos" class="titulo-projetos">Projetos</h1>
+    <h1 class="titulo-projetos">Projetos</h1>
 
-    <!-- MENSAGEM DE CARREGAMENTO -->
-    <div id="loading-message">Carregando projetos...</div>
+    <div id="featured-repo"></div>
 
-    <div id="repos-container" class="repo-grid"></div>
+    <!-- GRID NORMAL -->
+    <div id="works-container" class="repo-grid"></div>
 
     <div class="button">
       <button id="load-more">Ver mais</button>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>Desenvolvido por <strong>Beatriz Bramont</strong> <span class="emoji">💻</span></p>
+    <p>Desenvolvido por <strong>Beatriz Bramont</strong> 💻</p>
+
     <div class="tech-icons">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
     </div>
   </footer>
 
-
-
-  <script src="./js/works.js" defer></script>
-  <script src="./js/index.js" defer></script>
 </body>
 </html>

@@ -11,53 +11,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/repos', async (req, res) => {
-  try {
-    const response = await fetch(
-      'https://api.github.com/users/beatrizbramont/repos'
-    );
-
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: 'Erro ao consultar repositórios no GitHub'
-      });
+  res.json([
+    {
+      name: "ProjetoAPI",
+      description: "Teste de deploy atualizado",
+      html_url: "https://github.com/beatrizbramont/ProjetoAPI",
+      owner: {
+        login: "beatrizbramont"
+      }
+    },
+    {
+      name: "AtividadeMicros",
+      description: "Teste de deploy atualizado",
+      html_url: "https://github.com/beatrizbramont/AtividadeMicros",
+      owner: {
+        login: "beatrizbramont"
+      }
     }
-
-    const data = await response.json();
-    res.json(data);
-
-  } catch (err) {
-    console.error('Erro ao buscar repositórios:', err);
-
-    res.status(500).json({
-      message: 'Erro ao buscar repositórios'
-    });
-  }
+  ]);
 });
 
 app.get('/languages/:owner/:repo', async (req, res) => {
-  const { owner, repo } = req.params;
-
-  try {
-    const response = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/languages`
-    );
-
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: 'Erro ao consultar linguagens do repositório'
-      });
-    }
-
-    const data = await response.json();
-    res.json(data);
-
-  } catch (error) {
-    console.error('Erro ao buscar linguagens:', error);
-
-    res.status(500).json({
-      error: 'Erro ao buscar linguagens do repositório.'
-    });
-  }
+  res.json({
+    JavaScript: 100
+  });
 });
 
 const PORT = process.env.PORT || 3000;
