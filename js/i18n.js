@@ -1,72 +1,19 @@
 /**
- * Dicionário de textos do site.
- * Cada chave corresponde a um atributo data-i18n no HTML.
+ * Traduções do site.
+ *
+ * O PORTUGUÊS é o texto que está escrito no index.html — para mudar um texto
+ * em PT, edite o HTML direto. Este arquivo guarda:
+ *   - `en`: a tradução de cada data-i18n do HTML
+ *   - `pt`: só os textos que não existem no HTML por serem gerados em JS
+ *     (cards de projeto, rótulos de acessibilidade, botão "ver mais/menos")
  */
 window.I18N = {
   pt: {
-    'skip': 'Pular para o conteúdo',
-
-    'nav.about': 'Sobre',
-    'nav.experience': 'Trajetória',
-    'nav.stack': 'Stack',
-    'nav.projects': 'Projetos',
-    'nav.contact': 'Contato',
-
-    'hero.eyebrow': 'Disponível para novos desafios',
-    'hero.role': 'Desenvolvedora Fullstack',
-    'hero.lead':
-      'Construo APIs, automações e sistemas internos que transformam dados brutos em decisão — do banco de dados até a interface.',
-    'hero.cta.projects': 'Ver projetos',
-    'hero.cta.cv': 'Currículo',
-
-    'about.title': 'Sobre mim',
-    'about.p1':
-      'Sou desenvolvedora fullstack e trabalho hoje com sistemas internos, automação de processos e manipulação de dados no mercado financeiro.',
-    'about.p2':
-      'Meu foco está em back-end: modelagem de dados, APIs REST bem documentadas e rotinas que rodam sozinhas de forma confiável. Gosto de resolver o problema inteiro — da coleta do dado até a tela onde alguém toma a decisão.',
-    'about.p3':
-      'Me formei em Análise e Desenvolvimento de Sistemas e sigo estudando arquitetura de software, integração entre serviços e boas práticas de deploy.',
-    'about.facts.focus': 'Foco',
-    'about.facts.focusValue': 'Back-end & automação de dados',
-    'about.facts.main': 'Stack principal',
-    'about.facts.studying': 'Estudando',
-    'about.facts.studyingValue': 'Arquitetura de software & cloud',
-    'about.facts.langs': 'Idiomas',
-    'about.facts.langsValue': 'Português · Inglês',
-
-    'exp.title': 'Trajetória',
-    'exp.now': 'Atual',
-    'exp.job1.role': 'Desenvolvedora de Software',
-    'exp.job1.desc':
-      'Desenvolvimento de sistemas internos, automação de processos e tratamento de dados de mercado. Integração entre serviços via APIs REST.',
-    'exp.edu1.role': 'Análise e Desenvolvimento de Sistemas',
-    'exp.edu1.org': 'Graduação',
-    'exp.edu1.desc':
-      'Formação com foco em APIs REST, bancos de dados relacionais, arquitetura de microsserviços e desenvolvimento de aplicações fullstack.',
-    'exp.start.role': 'Primeiros projetos',
-    'exp.start.org': 'Estudo autodirigido',
-    'exp.start.desc':
-      'Início com front-end (HTML, CSS, JavaScript) e migração progressiva para back-end com Python, Flask e modelagem de banco de dados.',
-
-    'stack.title': 'Stack',
-    'stack.backend': 'Back-end',
-    'stack.data': 'Dados',
-    'stack.frontend': 'Front-end',
-    'stack.tools': 'Ferramentas',
-
-    'projects.title': 'Projetos',
-    'projects.sub': 'Seleção do que melhor representa como eu trabalho.',
     'projects.more': 'Ver mais projetos',
     'projects.less': 'Ver menos',
-    'projects.allGithub': 'Todos os repositórios no GitHub',
     'projects.featured': 'Projeto em destaque',
     'projects.code': 'Código',
     'projects.live': 'Ver projeto',
-
-    'contact.title': 'Vamos conversar',
-    'contact.sub': 'Aberta a oportunidades, trocas sobre back-end e projetos de automação.',
-
-    'footer.built': 'Feito com HTML, CSS e JavaScript · publicado no GitHub Pages',
 
     'aria.theme': 'Alternar tema',
     'aria.lang': 'Switch to English',

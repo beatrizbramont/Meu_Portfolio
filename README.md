@@ -15,7 +15,7 @@ já que o próprio site é um dos projetos do portfólio.
 ## Funcionalidades
 
 - **Tema claro e escuro** — respeita a preferência do sistema e guarda a escolha no `localStorage`
-- **Bilíngue (PT/EN)** — todos os textos vêm de um dicionário em `js/i18n.js`, trocados sem recarregar a página
+- **Bilíngue (PT/EN)** — o português é o texto do próprio HTML; `js/i18n.js` guarda só a tradução em inglês
 - **Projetos renderizados via JavaScript** — um destaque com métricas e um grid expansível
 - **Navegação com scrollspy** — o link da seção atual é marcado conforme a rolagem
 - **Animações de entrada** com `IntersectionObserver`, desativadas quando o sistema pede movimento reduzido
@@ -33,9 +33,27 @@ Meu_Portfolio/
 │   ├── style.css        # tokens de design, layout e componentes globais
 │   └── works.css        # timeline e cards de projeto
 └── js/
-    ├── i18n.js          # dicionário PT/EN
+    ├── i18n.js          # tradução em inglês
     ├── works.js         # dados e renderização dos projetos
     └── index.js         # tema, idioma, navegação e scroll
+```
+
+## Como mudar um texto
+
+**Em português:** edite direto no `index.html`. Os elementos com `data-i18n`
+usam o texto do HTML como original.
+
+**Em inglês:** edite a chave correspondente em `js/i18n.js`, dentro de `en`.
+A chave é o valor do `data-i18n` do elemento.
+
+```html
+<!-- index.html -->
+<h2 data-i18n="about.title">Sobre mim</h2>
+```
+
+```js
+// js/i18n.js
+en: { 'about.title': 'About me' }
 ```
 
 ## Rodando localmente

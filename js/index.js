@@ -39,7 +39,13 @@
     root.setAttribute('lang', lang === 'en' ? 'en' : 'pt-BR');
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      const value = dict[el.getAttribute('data-i18n')];
+      // o texto em português é o que está escrito no HTML — guardamos na
+      // primeira passagem para poder voltar nele depois
+      if (el.dataset.ptOriginal === undefined) el.dataset.ptOriginal = el.textContent;
+
+      const key = el.getAttribute('data-i18n');
+      const value = lang === 'pt' ? (dict[key] || el.dataset.ptOriginal) : dict[key];
+
       if (value) el.textContent = value;
     });
 
