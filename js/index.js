@@ -1,176 +1,252 @@
-// function profile() {
-//   fetch('https://meu-portfolio-bus2.onrender.com/repos')
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error(`Erro na API: ${response.status}`);
-//       }
-//       return response.json();
-//     })
-//     .then(data => {
-//       console.log("Repositórios do GitHub:", data);
-//     })
-//     .catch(error => console.error("Erro ao buscar dados:", error));
-// }
+/**
+ * Comportamentos do site: tema, idioma, navegação, scrollspy e animações.
+ */
+(function () {
+  'use strict';
 
+  const root = document.documentElement;
+  const STORAGE_THEME = 'bb-theme';
+  const STORAGE_LANG = 'bb-lang';
 
-// function color() {
-//   document.addEventListener("DOMContentLoaded", () => {
-//     const worksSection = document.querySelector("#works");
+  let currentLang = 'pt';
+  let showAllProjects = false;
 
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           if (entry.isIntersecting) {
-//             document.body.classList.add("works-active");
-//           } else {
-//             document.body.classList.remove("works-active");
-//           }
-//         });
-//       },
-//       {
-//         threshold: 0.5,
-//       }
-//     );
+  /* ====================== Tema ====================== */
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
 
-//     if (worksSection) {
-//       observer.observe(worksSection);
-//     }
-//   });
-// }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#fbfaf8' : '#0b0d10');
+  }
 
-// function colorSobre() {
-//   document.addEventListener("DOMContentLoaded", () => {
-//     const sobreSection = document.querySelector("#sobre");
+  function initTheme() {
+    const toggle = document.querySelector('#theme-toggle');
+    if (!toggle) return;
 
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         entries.forEach((entry) => {
-//           if (entry.isIntersecting) {
-//             document.body.classList.add("sobre-active");
-//           } else {
-//             document.body.classList.remove("sobre-active");
-//           }
-//         });
-//       },
-//       {
-//         threshold: 0.5,
-//       }
-//     );
+    toggle.addEventListener('click', function () {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem(STORAGE_THEME, next);
+    });
+  }
 
-//     if (sobreSection) {
-//       observer.observe(sobreSection);
-//     }
-//   });
-// }
+  /* ====================== Idioma ====================== */
+  function translate(lang) {
+    const dict = window.I18N[lang];
+    if (!dict) return;
 
-function nameProject() {
-  const titulo = document.querySelector(".titulo-projetos");
+    currentLang = lang;
+    root.setAttribute('lang', lang === 'en' ? 'en' : 'pt-BR');
 
-  if (!titulo) return;
-
-  document.querySelector('a[href="#works"]').addEventListener("click", function (e) {
-    e.preventDefault();
-
-    document.querySelector("#works").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      const value = dict[el.getAttribute('data-i18n')];
+      if (value) el.textContent = value;
     });
 
-    // mantém o título aparecendo após o clique
-    setTimeout(() => {
-      titulo.classList.add("visible");
-    }, 800);
-  });
+    // rótulos acessíveis dos botões sem texto visível
+    const ariaMap = {
+      '#theme-toggle': 'aria.theme',
+      '#lang-toggle': 'aria.lang',
+      '#nav-toggle': 'aria.menu',
+      '#to-top': 'aria.top'
+    };
 
+    Object.keys(ariaMap).forEach(function (selector) {
+      const el = document.querySelector(selector);
+      if (el && dict[ariaMap[selector]]) el.setAttribute('aria-label', dict[ariaMap[selector]]);
+    });
 
-  window.addEventListener("scroll", function () {
+    const label = document.querySelector('.lang-current');
+    if (label) label.textContent = lang.toUpperCase();
 
-    const posicaoTitulo = titulo.getBoundingClientRect().top;
-    const alturaJanela = window.innerHeight;
+    renderProjects();
+  }
 
-    if (posicaoTitulo < alturaJanela - 100) {
-      titulo.classList.add("visible");
+  function initLang() {
+    const toggle = document.querySelector('#lang-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function () {
+      const next = currentLang === 'pt' ? 'en' : 'pt';
+      translate(next);
+      localStorage.setItem(STORAGE_LANG, next);
+    });
+  }
+
+  /* ====================== Projetos ====================== */
+  function renderProjects() {
+    if (!window.Works) return;
+
+    window.Works.renderFeatured(currentLang);
+    window.Works.renderGrid(currentLang, showAllProjects);
+
+    updateLoadMoreLabel();
+    observeReveals();
+  }
+
+  function updateLoadMoreLabel() {
+    const button = document.querySelector('#load-more span');
+    if (!button) return;
+
+    const key = showAllProjects ? 'projects.less' : 'projects.more';
+    button.textContent = window.I18N[currentLang][key];
+  }
+
+  function initLoadMore() {
+    const button = document.querySelector('#load-more');
+    if (!button || !window.Works) return;
+
+    // sem projetos extras, o botão não faz sentido
+    if (window.Works.total <= window.Works.initialCount) {
+      button.hidden = true;
+      return;
     }
 
-  });
-}
+    button.addEventListener('click', function () {
+      showAllProjects = !showAllProjects;
+      window.Works.renderGrid(currentLang, showAllProjects);
+      updateLoadMoreLabel();
+      observeReveals();
 
-// function scrollSobre() {
-//   const titulo = document.getElementById("titulo-sobre");
-//   let allowShowTitle = true;
+      button.classList.toggle('is-open', showAllProjects);
 
-//   document.querySelector('a[href="#sobre"]').addEventListener("click", function (e) {
-//     e.preventDefault();
-//     const section = document.querySelector("#sobre");
-//     allowShowTitle = false;
-//     titulo.classList.remove("visible");
-
-//     const y = section.getBoundingClientRect().top + window.pageYOffset - 80;
-
-//     window.scrollTo({
-//       top: y,
-//       behavior: 'smooth'
-//     });
-
-//     setTimeout(() => {
-//       allowShowTitle = true;
-//     }, 1500);
-//   });
-
-//   window.addEventListener("scroll", function () {
-//     const posicaoTitulo = titulo.getBoundingClientRect().top;
-//     const alturaJanela = window.innerHeight;
-
-//     if (allowShowTitle && posicaoTitulo < alturaJanela - 100) {
-//       titulo.classList.add("visible");
-//     }
-//   });
-// }
-
-function footer() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const contatoSection = document.getElementById("contato");
-    const footer = contatoSection?.querySelector("footer");
-    const linkContato = document.getElementById("link-contato");
-
-    if (!contatoSection || !footer) return;
-
-    function showFooter() {
-      footer.classList.add("visible");
-    }
-
-    // Mostrar ao scrollar até a section (funciona mesmo se nunca clicou no menu)
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            showFooter();
-            observer.unobserve(entry.target); // Para evitar múltiplas ativações
-          }
-        });
-      },
-      {
-        threshold: 0.5, // quando 50% da seção estiver visível
+      if (!showAllProjects) {
+        document.querySelector('#projetos').scrollIntoView({ block: 'start' });
       }
+    });
+  }
+
+  /* ====================== Animação de entrada ====================== */
+  let revealObserver = null;
+
+  function observeReveals() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+    }
+
+    document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  }
+
+  /* ====================== Navegação mobile ====================== */
+  function initNav() {
+    const toggle = document.querySelector('#nav-toggle');
+    const nav = document.querySelector('#nav');
+    if (!toggle || !nav) return;
+
+    function close() {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', close);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') close();
+    });
+  }
+
+  /* ====================== Scroll: header, spy e topo ====================== */
+  function initScroll() {
+    const header = document.querySelector('#site-header');
+    const toTop = document.querySelector('#to-top');
+    const links = Array.prototype.slice.call(document.querySelectorAll('.nav-list a'));
+
+    const sections = links
+      .map(function (link) {
+        return document.querySelector(link.getAttribute('href'));
+      })
+      .filter(Boolean);
+
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY;
+
+      if (header) header.classList.toggle('scrolled', y > 20);
+      if (toTop) toTop.classList.toggle('visible', y > 600);
+
+      // seção ativa: a última cujo topo já passou pelo header
+      let activeIndex = -1;
+      const offset = 140;
+
+      sections.forEach(function (section, index) {
+        if (section.getBoundingClientRect().top <= offset) activeIndex = index;
+      });
+
+      // no fim da página, destaca sempre a última
+      if (window.innerHeight + y >= document.body.offsetHeight - 2) {
+        activeIndex = sections.length - 1;
+      }
+
+      links.forEach(function (link, index) {
+        link.classList.toggle('active', index === activeIndex);
+      });
+
+      ticking = false;
+    }
+
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+      },
+      { passive: true }
     );
 
-    observer.observe(contatoSection);
-
-    // Mostrar ao clicar no menu
-    if (linkContato) {
-      linkContato.addEventListener("click", (e) => {
-        e.preventDefault();
-        contatoSection.scrollIntoView({ behavior: "smooth" });
-        // Sem timeout agora — o observer cuida de mostrar o footer
+    if (toTop) {
+      toTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
-  });
-}
 
-// Inicialização de funções
-// colorSobre();
-footer();
-nameProject();
-// color();
-// profile();
-// scrollSobre();
+    update();
+  }
+
+  /* ====================== Boot ====================== */
+  function init() {
+    // idioma: preferência salva > idioma do navegador > português
+    const savedLang = localStorage.getItem(STORAGE_LANG);
+    const browserLang = (navigator.language || 'pt').toLowerCase().startsWith('en') ? 'en' : 'pt';
+    currentLang = savedLang || browserLang;
+
+    const year = document.querySelector('#year');
+    if (year) year.textContent = String(new Date().getFullYear());
+
+    initTheme();
+    initLang();
+    initNav();
+    initLoadMore();
+
+    translate(currentLang); // já dispara renderProjects()
+    initScroll();
+  }
+
+  init();
+})();

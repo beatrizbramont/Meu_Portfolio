@@ -1,139 +1,399 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu Portfólio</title>
+
+  <title>Beatriz Bramont — Desenvolvedora Fullstack</title>
+  <meta name="description"
+    content="Desenvolvedora fullstack focada em Python, Flask e automação de dados. Construo APIs, pipelines e sistemas internos — do banco de dados à interface." />
+  <meta name="author" content="Beatriz Bramont Oliveira" />
+  <meta name="theme-color" content="#0B0D10" />
+
+  <!-- Open Graph / preview ao compartilhar no LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://beatrizbramont.github.io/Meu_Portfolio/" />
+  <meta property="og:title" content="Beatriz Bramont — Desenvolvedora Fullstack" />
+  <meta property="og:description"
+    content="Python, Flask e automação de dados. APIs, pipelines e sistemas internos — do banco de dados à interface." />
+  <meta property="og:image" content="https://github.com/beatrizbramont.png" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://beatrizbramont.github.io/Meu_Portfolio/" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230B0D10'/><text x='50' y='68' font-family='monospace' font-size='52' font-weight='700' fill='%23F0B429' text-anchor='middle'>B</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/works.css" />
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&family=Archivo&family=Poppins&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+  <!-- Define o tema antes da primeira pintura para não piscar -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('bb-theme');
+      var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (prefersLight ? 'light' : 'dark'));
+    })();
+  </script>
 
-  <script src="./js/index.js" defer></script>
+  <script src="./js/i18n.js" defer></script>
   <script src="./js/works.js" defer></script>
+  <script src="./js/index.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
 
-  <!-- NAV -->
-  <header>
-    <nav class="navigation">
-      <ul class="nav-list">
-        <li><a href="#home">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#works">Projetos</a></li>
-        <li class="dropdown">
-          <a href="#contato">Contato</a>
-          <ul class="dropdown-content">
-            <li>
-              <a href="mailto:beatriz.bramont@gmail.com">
-                <span class="material-symbols-outlined">email</span>
-                Email
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/beatriz-bramont-008329209" target="_blank">
-                <span class="material-symbols-outlined">work</span>
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#home" aria-label="Beatriz Bramont — início">
+        <span class="brand-mark">BB</span>
+        <span class="brand-name">Beatriz Bramont</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li><a href="#experiencia" data-i18n="nav.experience">Trajetória</a></li>
+          <li><a href="#stack" data-i18n="nav.stack">Stack</a></li>
+          <li><a href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+          <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="lang-toggle" type="button" aria-label="Switch to English">
+          <span class="lang-current">PT</span>
+        </button>
+
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Alternar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" />
+            <path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z" />
+          </svg>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav"
+          aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <!-- HOME -->
-  <section id="home">
-    <div class="home-container">
+  <main id="conteudo">
 
-      <div class="home-texto">
-        <h1>Beatriz Bramont Oliveira</h1>
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
 
-        <p class="subtitle">
-          Desenvolvedora Fullstack focada em criação de aplicações completas,
-          do back-end ao front-end.
-        </p>
+      <div class="shell hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span data-i18n="hero.eyebrow">Disponível para novos desafios</span>
+          </p>
 
-        <p class="highlight">
-          Construo sistemas funcionais, conectando APIs, interfaces e regras de negócio.
-        </p>
+          <h1 class="hero-title">
+            Beatriz<br />
+            <span class="accent">Bramont</span>
+          </h1>
 
-        <div class="stack">
-          <span>Python</span>
-          <span>Flask</span>
-          <span>JavaScript</span>
-          <span>APIs REST</span>
-          <span>SQL</span>
+          <p class="hero-role" data-i18n="hero.role">Desenvolvedora Fullstack</p>
+
+          <p class="hero-lead" data-i18n="hero.lead">
+            Construo APIs, automações e sistemas internos que transformam dados brutos
+            em decisão — do banco de dados até a interface.
+          </p>
+
+          <ul class="stack-chips" aria-label="Principais tecnologias">
+            <li>Python</li>
+            <li>Flask</li>
+            <li>SQLAlchemy</li>
+            <li>JavaScript</li>
+            <li>API REST</li>
+            <li>SQL</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projetos">
+              <span data-i18n="hero.cta.projects">Ver projetos</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7" /></svg>
+            </a>
+
+            <a class="btn btn-ghost" href="assets/cv-beatriz-bramont.pdf" download>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 20h16" /></svg>
+              <span data-i18n="hero.cta.cv">Currículo</span>
+            </a>
+          </div>
+
+          <div class="hero-links">
+            <a href="https://github.com/beatrizbramont" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/beatrizbramontol" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <span aria-hidden="true">·</span>
+            <a href="mailto:beatriz.bramont@gmail.com">E-mail</a>
+          </div>
         </div>
 
-        <div class="buttons-container">
-          <a class="profile" href="https://github.com/beatrizbramont" target="_blank">
-            <span class="material-symbols-outlined">code</span>
-            GitHub
+        <div class="hero-photo">
+          <div class="photo-frame">
+            <img src="https://github.com/beatrizbramont.png" alt="Foto de Beatriz Bramont" width="420" height="420" />
+          </div>
+          <p class="photo-caption">
+            <span class="mono">São Paulo, BR</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Python</span><i>◆</i><span>Flask</span><i>◆</i><span>SQLAlchemy</span><i>◆</i><span>PostgreSQL</span><i>◆</i><span>MySQL</span><i>◆</i><span>API REST</span><i>◆</i><span>JavaScript</span><i>◆</i><span>React</span><i>◆</i><span>Next.js</span><i>◆</i><span>Docker</span><i>◆</i><span>Git</span><i>◆</i><span>GitHub Actions</span><i>◆</i><span>Swagger</span><i>◆</i><span>Pandas</span><i>◆</i>
+        <span>Python</span><i>◆</i><span>Flask</span><i>◆</i><span>SQLAlchemy</span><i>◆</i><span>PostgreSQL</span><i>◆</i><span>MySQL</span><i>◆</i><span>API REST</span><i>◆</i><span>JavaScript</span><i>◆</i><span>React</span><i>◆</i><span>Next.js</span><i>◆</i><span>Docker</span><i>◆</i><span>Git</span><i>◆</i><span>GitHub Actions</span><i>◆</i><span>Swagger</span><i>◆</i><span>Pandas</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ============ SOBRE ============ -->
+    <section id="sobre" class="section">
+      <div class="shell">
+        <header class="section-head reveal">
+          <span class="section-index mono">01</span>
+          <h2 class="section-title" data-i18n="about.title">Sobre mim</h2>
+        </header>
+
+        <div class="about-layout">
+          <div class="about-text reveal">
+            <p class="lead" data-i18n="about.p1">
+              Sou desenvolvedora fullstack e trabalho hoje com sistemas internos,
+              automação de processos e manipulação de dados no mercado financeiro.
+            </p>
+            <p data-i18n="about.p2">
+              Meu foco está em back-end: modelagem de dados, APIs REST bem documentadas e
+              rotinas que rodam sozinhas de forma confiável. Gosto de resolver o problema
+              inteiro — da coleta do dado até a tela onde alguém toma a decisão.
+            </p>
+            <p data-i18n="about.p3">
+              Me formei em Análise e Desenvolvimento de Sistemas e sigo estudando
+              arquitetura de software, integração entre serviços e boas práticas de deploy.
+            </p>
+          </div>
+
+          <aside class="about-facts reveal">
+            <dl>
+              <div>
+                <dt class="mono" data-i18n="about.facts.focus">Foco</dt>
+                <dd data-i18n="about.facts.focusValue">Back-end &amp; automação de dados</dd>
+              </div>
+              <div>
+                <dt class="mono" data-i18n="about.facts.main">Stack principal</dt>
+                <dd>Python · Flask · SQL</dd>
+              </div>
+              <div>
+                <dt class="mono" data-i18n="about.facts.studying">Estudando</dt>
+                <dd data-i18n="about.facts.studyingValue">Arquitetura de software &amp; cloud</dd>
+              </div>
+              <div>
+                <dt class="mono" data-i18n="about.facts.langs">Idiomas</dt>
+                <dd data-i18n="about.facts.langsValue">Português · Inglês</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRAJETÓRIA ============ -->
+    <section id="experiencia" class="section section-alt">
+      <div class="shell">
+        <header class="section-head reveal">
+          <span class="section-index mono">02</span>
+          <h2 class="section-title" data-i18n="exp.title">Trajetória</h2>
+        </header>
+
+        <!--
+          TODO Beatriz: confirme cargo, empresa e datas abaixo antes de publicar.
+          Os períodos estão como estimativa.
+        -->
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <p class="timeline-period mono">2025 — <span data-i18n="exp.now">Atual</span></p>
+            <h3 class="timeline-role" data-i18n="exp.job1.role">Desenvolvedora de Software</h3>
+            <p class="timeline-org">Timbro Trading</p>
+            <p class="timeline-desc" data-i18n="exp.job1.desc">
+              Desenvolvimento de sistemas internos, automação de processos e tratamento
+              de dados de mercado. Integração entre serviços via APIs REST.
+            </p>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <p class="timeline-period mono">2024 — 2026</p>
+            <h3 class="timeline-role" data-i18n="exp.edu1.role">Análise e Desenvolvimento de Sistemas</h3>
+            <p class="timeline-org" data-i18n="exp.edu1.org">Graduação</p>
+            <p class="timeline-desc" data-i18n="exp.edu1.desc">
+              Formação com foco em APIs REST, bancos de dados relacionais, arquitetura
+              de microsserviços e desenvolvimento de aplicações fullstack.
+            </p>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <p class="timeline-period mono">2024</p>
+            <h3 class="timeline-role" data-i18n="exp.start.role">Primeiros projetos</h3>
+            <p class="timeline-org" data-i18n="exp.start.org">Estudo autodirigido</p>
+            <p class="timeline-desc" data-i18n="exp.start.desc">
+              Início com front-end (HTML, CSS, JavaScript) e migração progressiva para
+              back-end com Python, Flask e modelagem de banco de dados.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section id="stack" class="section">
+      <div class="shell">
+        <header class="section-head reveal">
+          <span class="section-index mono">03</span>
+          <h2 class="section-title" data-i18n="stack.title">Stack</h2>
+        </header>
+
+        <div class="stack-groups">
+          <div class="stack-group reveal">
+            <h3 class="mono" data-i18n="stack.backend">Back-end</h3>
+            <ul class="tech-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" width="28" height="28" loading="lazy" /> Python</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="" width="28" height="28" loading="lazy" class="invertible" /> Flask</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" alt="" width="28" height="28" loading="lazy" class="invertible" /> SQLAlchemy</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" width="28" height="28" loading="lazy" /> Node.js</li>
+            </ul>
+          </div>
+
+          <div class="stack-group reveal">
+            <h3 class="mono" data-i18n="stack.data">Dados</h3>
+            <ul class="tech-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" width="28" height="28" loading="lazy" /> PostgreSQL</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="28" height="28" loading="lazy" /> MySQL</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="" width="28" height="28" loading="lazy" /> SQLite</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="" width="28" height="28" loading="lazy" /> Pandas</li>
+            </ul>
+          </div>
+
+          <div class="stack-group reveal">
+            <h3 class="mono" data-i18n="stack.frontend">Front-end</h3>
+            <ul class="tech-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="28" height="28" loading="lazy" /> JavaScript</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="" width="28" height="28" loading="lazy" /> TypeScript</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" width="28" height="28" loading="lazy" /> React</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="" width="28" height="28" loading="lazy" class="invertible" /> Next.js</li>
+            </ul>
+          </div>
+
+          <div class="stack-group reveal">
+            <h3 class="mono" data-i18n="stack.tools">Ferramentas</h3>
+            <ul class="tech-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="28" height="28" loading="lazy" /> Git</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" width="28" height="28" loading="lazy" /> Docker</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="" width="28" height="28" loading="lazy" /> GitHub Actions</li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="" width="28" height="28" loading="lazy" /> Swagger</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJETOS ============ -->
+    <section id="projetos" class="section section-alt">
+      <div class="shell">
+        <header class="section-head reveal">
+          <span class="section-index mono">04</span>
+          <h2 class="section-title" data-i18n="projects.title">Projetos</h2>
+          <p class="section-sub" data-i18n="projects.sub">
+            Seleção do que melhor representa como eu trabalho.
+          </p>
+        </header>
+
+        <!-- Preenchido por js/works.js -->
+        <div id="featured-project"></div>
+        <div id="works-container" class="repo-grid"></div>
+
+        <div class="section-foot">
+          <button id="load-more" class="btn btn-ghost" type="button">
+            <span data-i18n="projects.more">Ver mais projetos</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+
+          <a class="btn btn-link" href="https://github.com/beatrizbramont?tab=repositories" target="_blank"
+            rel="noopener noreferrer" data-i18n="projects.allGithub">Todos os repositórios no GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section id="contato" class="section">
+      <div class="shell">
+        <header class="section-head reveal">
+          <span class="section-index mono">05</span>
+          <h2 class="section-title" data-i18n="contact.title">Vamos conversar</h2>
+          <p class="section-sub" data-i18n="contact.sub">
+            Aberta a oportunidades, trocas sobre back-end e projetos de automação.
+          </p>
+        </header>
+
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="mailto:beatriz.bramont@gmail.com">
+            <span class="contact-label mono">E-mail</span>
+            <span class="contact-value">beatriz.bramont@gmail.com</span>
+            <span class="contact-arrow" aria-hidden="true">→</span>
           </a>
 
-          <a class="download-cv" href="assets/C.V BeatrizBramont.pdf" download>
-            <span class="material-symbols-outlined">description</span>
-            Currículo
+          <a class="contact-card reveal" href="https://www.linkedin.com/in/beatrizbramontol" target="_blank"
+            rel="noopener noreferrer">
+            <span class="contact-label mono">LinkedIn</span>
+            <span class="contact-value">/in/beatrizbramontol</span>
+            <span class="contact-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="contact-card reveal" href="https://github.com/beatrizbramont" target="_blank"
+            rel="noopener noreferrer">
+            <span class="contact-label mono">GitHub</span>
+            <span class="contact-value">@beatrizbramont</span>
+            <span class="contact-arrow" aria-hidden="true">→</span>
           </a>
         </div>
       </div>
+    </section>
 
-      <div class="home-foto">
-        <img src="https://github.com/beatrizbramont.png" alt="Foto de perfil" />
-      </div>
+  </main>
 
-    </div>
-  </section>
-
-  <!-- SOBRE -->
-  <section id="sobre">
-    <h1 class="titulo-sobre">Sobre Mim</h1>
-    <p>
-      Desenvolvedora Fullstack com experiência na construção de aplicações completas,
-      atuando desde a criação de APIs até o desenvolvimento de interfaces.
-
-      Tenho experiência com Python, Flask, JavaScript e bancos de dados relacionais,
-      desenvolvendo soluções que integram back-end e front-end de forma eficiente.
-
-      Atualmente trabalho com desenvolvimento de sistemas internos, automação de processos
-      e manipulação de dados, sempre buscando criar soluções escaláveis e bem estruturadas.
-
-      Durante minha formação em Análise e Desenvolvimento de Sistemas, desenvolvi projetos
-      com foco em APIs REST, integração de sistemas e aplicações fullstack.
-    </p>
-  </section>
-
-  <!-- PROJETOS -->
-  <section id="works">
-    <h1 class="titulo-projetos">Projetos</h1>
-
-    <div id="featured-repo"></div>
-
-    <!-- GRID NORMAL -->
-    <div id="works-container" class="repo-grid"></div>
-
-    <div class="button">
-      <button id="load-more">Ver mais</button>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Desenvolvido por <strong>Beatriz Bramont</strong> 💻</p>
-
-    <div class="tech-icons">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p class="mono">© <span id="year">2026</span> Beatriz Bramont Oliveira</p>
+      <p class="mono footer-built" data-i18n="footer.built">
+        Feito com HTML, CSS e JavaScript · publicado no GitHub Pages
+      </p>
     </div>
   </footer>
 
+  <button class="to-top" id="to-top" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6" /></svg>
+  </button>
+
 </body>
+
 </html>

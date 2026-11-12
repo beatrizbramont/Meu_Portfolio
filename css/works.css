@@ -1,230 +1,348 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background: linear-gradient(to right, #ff84a7, #a2e39c);
-  color: #000;
+/* ==========================================================================
+   Timeline da trajetória + cards de projeto
+   ========================================================================== */
+
+/* ---------- Timeline ---------- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
 }
 
-/* NAVBAR */
-header {
-  background: transparent;
-  display: flex;
-  justify-content: center;
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-line), var(--border) 35%, transparent);
 }
 
-.navigation {
-  background-color: #FEB5CA;
-  border-radius: 10px;
-  padding: 14px 20px;
-  position: sticky;
-  bottom: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  backdrop-filter: blur(10px);
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.75rem;
 }
 
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
+.timeline-item:last-child {
+  padding-bottom: 0;
 }
 
-.nav-list a {
-  text-decoration: none;
-  color: #444;
-  font-weight: bold;
-  transition: 0.3s;
+.timeline-marker {
+  position: absolute;
+  left: -2rem;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  border: 2px solid var(--border-hi);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-.nav-list a:hover {
-  color: #000;
-  transform: translateY(-2px);
+.timeline-item:first-child .timeline-marker {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
-/* LOADING */
-.loading-message {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  animation: pulse 1.5s infinite;
+.timeline-period {
+  color: var(--accent);
+  margin-bottom: 0.35rem;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.4; }
-  50% { opacity: 1; }
-  100% { opacity: 0.4; }
+.timeline-role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
 }
 
-/* GRID */
-.repo-grid {
+.timeline-org {
+  margin-top: 0.15rem;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+.timeline-desc {
+  margin-top: 0.75rem;
+  max-width: 62ch;
+  color: var(--text-dim);
+}
+
+/* ---------- Projeto em destaque ---------- */
+.featured {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 0;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.35s var(--ease);
 }
 
-/* CARD */
-.repo-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+.featured:hover {
+  border-color: var(--accent-line);
+}
+
+.featured-main {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  margin-bottom: 1.1rem;
+  border-radius: 100px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.featured-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.featured-desc {
+  margin-top: 0.9rem;
+  max-width: 58ch;
+  color: var(--text-dim);
+}
+
+.featured-highlights {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.featured-highlights li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+
+.featured-highlights li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* painel lateral do destaque */
+.featured-side {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  border-left: 1px solid var(--border);
+  background: var(--bg-alt);
   display: flex;
   flex-direction: column;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
-/* brilho sutil */
-.repo-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.2),
-    transparent
-  );
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: 0.5s;
-  pointer-events: none;
+.featured-metrics {
+  display: grid;
+  gap: 1.25rem;
 }
 
-.repo-card:hover::before {
-  opacity: 1;
-  animation: shine 1s;
+.metric-value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1.1;
 }
 
-@keyframes shine {
-  from { transform: translateX(-100%) rotate(25deg); }
-  to { transform: translateX(100%) rotate(25deg); }
+.metric-label {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
 }
 
-/* HOVER */
-.repo-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+/* ---------- Grid de projetos ---------- */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.75rem;
 }
 
-/* TITULO */
-.repo-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  color: #222;
-}
-
-/* DESCRIÇÃO */
-.repo-card p {
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-/* TECNOLOGIAS */
-.repo-card .tech {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-/* LISTA */
-.repo-card ul {
-  padding-left: 18px;
-  margin-bottom: 15px;
-}
-
-.repo-card li {
-  font-size: 0.85rem;
-  margin-bottom: 4px;
-}
-
-/* BOTÕES */
-.buttons {
+.repo-card {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+
+.repo-card:hover {
+  border-color: var(--border-hi);
+  background: var(--surface-hi);
+  transform: translateY(-4px);
+}
+
+.repo-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.repo-card h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.repo-year {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  padding-top: 0.2rem;
+}
+
+.repo-desc {
+  margin-top: 0.75rem;
+  font-size: 0.93rem;
+  color: var(--text-dim);
+}
+
+.repo-features {
+  margin-top: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.repo-features li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.87rem;
+  color: var(--text-dim);
+}
+
+.repo-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* chips de tecnologia */
+.repo-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.35rem;
+}
+
+.repo-tech li {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg-alt);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+}
+
+/* links do card */
+.repo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
   margin-top: auto;
+  padding-top: 1.5rem;
 }
 
-.buttons a {
-  flex: 1;
-  text-align: center;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s;
+.repo-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border-hi);
+  padding-bottom: 2px;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
-/* botão código */
-.repo-card .buttons a:first-child {
-  background: #ffffff;
-  border: 2px solid #FEB5CA;
-  color: #000;
+.repo-links a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
-.repo-card .buttons a:first-child:hover {
-  background: #FEB5CA;
-  color: #000;
-}
-/* botão projeto */
-.buttons a:last-child {
-  background: #000;
-  color: #fff;
-}
-
-.buttons a:last-child:hover {
-  background: #333;
+.repo-links svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-/* BOTÃO VER MAIS */
-.ver-mais-btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: #FEB5CA;
-  color: #000;
-  font-weight: 500;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-size: 1rem;
-  margin-top: 20px;
+/* cards revelados depois do "ver mais" */
+.repo-card.is-extra {
+  animation: cardIn 0.5s var(--ease) both;
 }
 
-.ver-mais-btn:hover {
-  background-color: #fd9fb9;
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 }
 
-/* LOAD MORE */
-#load-more {
-  padding: 0.6rem 1.2rem;
-  background-color: #FEB5CA;
-  color: #000;
-  font-weight: 500;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  margin: 20px auto;
-  transition: 0.3s;
-  box-shadow: 0 8px 20px rgba(136, 33, 54, 0.4);
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .featured {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-side {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .featured-metrics {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }
 
-#load-more:hover {
-  background-color: #cf5884;
-  color: white;
+@media (max-width: 560px) {
+  .repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .repo-card {
+    padding: 1.4rem;
+  }
 }
