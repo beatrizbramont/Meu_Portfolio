@@ -16,7 +16,7 @@
     root.setAttribute('data-theme', theme);
 
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#fbfaf8' : '#0b0d10');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#fbfafc' : '#0b0d10');
   }
 
   function initTheme() {

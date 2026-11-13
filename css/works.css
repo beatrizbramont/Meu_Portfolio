@@ -2,6 +2,54 @@
    Timeline da trajetória + cards de projeto
    ========================================================================== */
 
+/* ---------- Trajetória: carreira | formação lado a lado ---------- */
+.journey {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* a coluna da direita ganha um fio que separa as duas trajetórias */
+.journey-col + .journey-col {
+  position: relative;
+}
+
+.journey-col + .journey-col::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * clamp(2.5rem, 5vw, 4.5rem) / 2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border), transparent);
+}
+
+.journey-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.journey-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ---------- Timeline ---------- */
 .timeline {
   position: relative;
@@ -52,7 +100,8 @@
 .timeline-role {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  line-height: 1.3;
   letter-spacing: -0.015em;
 }
 
@@ -65,6 +114,105 @@
 .timeline-desc {
   margin-top: 0.75rem;
   max-width: 62ch;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+/* quando a descrição é uma lista de atribuições */
+ul.timeline-desc li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+ul.timeline-desc li + li {
+  margin-top: 0.45rem;
+}
+
+ul.timeline-desc li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* linha de resultado — o que mudou de fato */
+.timeline-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  max-width: 62ch;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.result-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- Coluna acadêmica: cursos e idiomas ---------- */
+.journey-extra {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.extra-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.extra-title + .extra-title {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.course-list {
+  margin-top: 0.9rem;
+  font-size: 0.88rem;
+}
+
+.course-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.5rem 0;
+  color: var(--text-dim);
+}
+
+.course-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.course-org {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.extra-value {
+  margin-top: 0.7rem;
+  font-size: 0.88rem;
   color: var(--text-dim);
 }
 
@@ -323,6 +471,16 @@
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 900px) {
+  /* as duas trajetórias empilham: carreira primeiro, formação depois */
+  .journey {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .journey-col + .journey-col::before {
+    display: none;
+  }
+
   .featured {
     grid-template-columns: 1fr;
   }

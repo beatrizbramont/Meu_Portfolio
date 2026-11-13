@@ -17,10 +17,10 @@
   --text-dim: #9ba5b0;
   --text-faint: #6b7682;
 
-  --accent: #f0b429;
+  --accent: #a78bfa;
   --accent-ink: #0b0d10;
-  --accent-soft: rgba(240, 180, 41, 0.12);
-  --accent-line: rgba(240, 180, 41, 0.35);
+  --accent-soft: rgba(167, 139, 250, 0.14);
+  --accent-line: rgba(167, 139, 250, 0.38);
 
   --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
@@ -35,21 +35,21 @@
 }
 
 :root[data-theme='light'] {
-  --bg: #fbfaf8;
-  --bg-alt: #f2f0ec;
+  --bg: #fbfafc;
+  --bg-alt: #f3f1f7;
   --surface: #ffffff;
-  --surface-hi: #faf8f5;
-  --border: #e3dfd8;
-  --border-hi: #cfc9bf;
+  --surface-hi: #faf8fd;
+  --border: #e5e1ec;
+  --border-hi: #cdc6d8;
 
   --text: #15181c;
   --text-dim: #555f6a;
   --text-faint: #828d99;
 
-  --accent: #a96a05;
+  --accent: #6d28d9;
   --accent-ink: #ffffff;
-  --accent-soft: rgba(169, 106, 5, 0.1);
-  --accent-line: rgba(169, 106, 5, 0.3);
+  --accent-soft: rgba(109, 40, 217, 0.1);
+  --accent-line: rgba(109, 40, 217, 0.3);
 }
 
 /* ---------- Reset ---------- */
