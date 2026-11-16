@@ -13,7 +13,7 @@
     tech: ['Python', 'GitHub Actions', 'Google Gemini', 'API Banco Central', 'Yahoo Finance', 'Pandas'],
     metrics: [
       { value: '3', pt: 'Fontes de dados', en: 'Data sources' },
-      { value: '08:00', pt: 'Todo dia útil', en: 'Every business day' },
+      { value: '1x', pt: 'Por dia útil', en: 'Per business day' },
       { value: 'PT / EN', pt: 'Publicação bilíngue', en: 'Bilingual output' },
       { value: 'R$ 0', pt: 'Custo de infra', en: 'Infra cost' }
     ],
